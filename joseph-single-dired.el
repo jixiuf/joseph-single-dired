@@ -76,6 +76,8 @@
 ;; Below are customizable option list:
 ;;
 
+(require 'dired)
+
 (defun joseph-kill-all-other-dired-buffers ( &optional current-buf)
   "kill all dired-buffers and diredp-w32-drivers-mode(w32 use this mode )
   except current-buf ,if current-buf is nil then kill all"
@@ -113,13 +115,14 @@
   (interactive "e")
   (let (file)
     (save-excursion
-      (set-buffer (window-buffer (posn-window (event-end event))))
-      (save-excursion
-        (goto-char (posn-point (event-end event)))
-        (setq file (dired-get-filename nil t))))
+      (with-current-buffer (window-buffer (posn-window (event-end event)))
+        (save-excursion
+          (goto-char (posn-point (event-end event)))
+          (setq file (dired-get-filename nil t)))))
     (select-window (posn-window (event-end event)))
     (find-alternate-file (file-name-sans-versions file t))))
 
 (define-key dired-mode-map [mouse-2] 'dired-mouse-find-alternate-file)
 
 (provide 'joseph-single-dired)
+
