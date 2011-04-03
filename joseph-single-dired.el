@@ -8,6 +8,7 @@
 ;; Created: 2011-04-03
 ;; Version: 0.1.0
 ;; URL: http://www.emacswiki.org/emacs/download/joseph-single-dired.el
+;;      git://github.com/jixiuf/joseph-single-dired.git
 ;; Keywords: dired single buffer
 ;; Compatibility: (Test on GNU Emacs 24)
 ;;
