@@ -85,7 +85,9 @@
     (with-current-buffer buf
       (when (and (not (eq current-buf buf))
                  (or  (eq 'dired-mode  major-mode)
-                      (eq 'diredp-w32-drives-mode major-mode)))
+                      (eq 'diredp-w32-drives-mode major-mode))
+                 (or (not (featurep 'server))
+                     (not server-buffer-clients)))
         (kill-buffer buf)))))
 
 (defadvice dired-find-file (around dired-find-file-single-buffer activate)
